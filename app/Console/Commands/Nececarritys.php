@@ -40,28 +40,30 @@ class Nececarritys extends Command
      */
     public function handle()
     {
-        /*
-        $admin = Role::create(['name' => 'Admin']);
-        $editor = Role::create(['name' => 'Editor']);
-        $reader = Role::create(['name' => 'Reader']);
+        if(!Role::findByName('Admin')) {
+            $admin = Role::create(['name' => 'Admin']);
+            $editor = Role::create(['name' => 'Editor']);
+            $reader = Role::create(['name' => 'Reader']);
 
-        $manageRoles = Permission::create(['name' => 'manage roles']);
-        $write = Permission::create(['name' => 'add notes']);
-        $read = Permission::create(['name' => 'read notes']);
-        $remove = Permission::create(['name' => 'remove notes']);
+            $manageRoles = Permission::create(['name' => 'manage roles']);
+            $write = Permission::create(['name' => 'add notes']);
+            $read = Permission::create(['name' => 'read notes']);
+            $remove = Permission::create(['name' => 'remove notes']);
 
-        $admin->givePermissionTo($manageRoles);
-        $admin->givePermissionTo($write);
-        $admin->givePermissionTo($read);
-        $admin->givePermissionTo($remove);
+            $admin->givePermissionTo($manageRoles);
+            $admin->givePermissionTo($write);
+            $admin->givePermissionTo($read);
+            $admin->givePermissionTo($remove);
 
-        $editor->givePermissionTo($write);
-        $editor->givePermissionTo($read);
+            $editor->givePermissionTo($write);
+            $editor->givePermissionTo($read);
 
-        $reader->givePermissionTo($read);
-        */
-        $user = User::find(1);
-        $user->assignRole(1);
-        $user->save();
+            $reader->givePermissionTo($read);
+            $user = User::find(1);
+            if($user) {
+                $user->assignRole(1);
+                $user->save();
+            }
+        }
     }
 }

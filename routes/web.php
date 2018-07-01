@@ -25,8 +25,8 @@ Route::prefix('roles')->group(function () {
 });
 Route::prefix('notes')->group(function () {
     Route::get('new', 'NotesController@new')->name('new');
-    Route::get('show', 'NotesController@show')->name('show');
+    Route::get('show/{id}', 'NotesController@show')->name('show');
     Route::post('create', 'NotesController@create')->name('create');
-    Route::post('edit', 'NotesController@edit')->name('edit');
-    Route::post('delete', 'NotesController@delete')->name('delete');
+    Route::get('edit/{id}', 'NotesController@edit')->name('edit');
+    Route::post('delete/{id}', 'NotesController@delete')->name('delete');
 });

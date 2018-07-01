@@ -18,6 +18,29 @@
                             <input type="text" class="form-control" id="search" name="search" placeholder=":tag: Name">
                         </div>
                     </div>
+                        <table class="table table-bordered table-hover">
+
+                            <thead>
+
+                            <tr>
+
+                                <th>ID</th>
+
+                                <th>Title</th>
+
+                                <th>Content</th>
+
+                                <th>Created At</th>
+
+                            </tr>
+
+                            </thead>
+
+                            <tbody>
+
+                            </tbody>
+
+                        </table>
                     @endcan
                     @cannot('read notes')
                         <div class="alert alert-danger" role="alert">
@@ -32,19 +55,24 @@
 @endsection
 @section('scripts')
 <script type="text/javascript">
-    $('#search').on('keyup',function(){
-        $value=$(this).val();
-        $.ajax({
-            type : 'get',
-            url : '{{URL::to('search')}}',
-            data:{'search':$value},
-            success:function(data){
-                $('tbody').html(data);
+    $(document).ready(function () {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-    })
-</script>
-<script type="text/javascript">
-    $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
+        $('#search').on('keyup',function(){
+            $value=$(this).val();
+            $.ajax({
+                type : 'get',
+                url : '{{URL::to('search')}}',
+                data:{'search':$value},
+                success:function(data){
+                    if(data !== null)
+                        $('tbody').html(data);
+                }
+            });
+        });
+    });
 </script>
 @endsection
