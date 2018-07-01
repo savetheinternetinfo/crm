@@ -8,7 +8,7 @@
                 <div class="card-header">Search for Entitys</div>
 
                 <div class="card-body">
-                    @can('read')
+                    @can('read notes')
                     <div class="alert alert-info" role="alert">
                         Search with <b>:tag: name</b> or just <b>name</b> - eg. <b>:text: Youtube</b> or just <b>Youtube</b>
                     </div>
@@ -19,7 +19,7 @@
                         </div>
                     </div>
                     @endcan
-                    @cannot('read')
+                    @cannot('read notes')
                         <div class="alert alert-danger" role="alert">
                             Get Some permissions
                         </div>

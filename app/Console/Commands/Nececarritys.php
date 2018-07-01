@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\User;
 use Illuminate\Console\Command;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -39,6 +40,7 @@ class Nececarritys extends Command
      */
     public function handle()
     {
+        /*
         $admin = Role::create(['name' => 'Admin']);
         $editor = Role::create(['name' => 'Editor']);
         $reader = Role::create(['name' => 'Reader']);
@@ -57,5 +59,9 @@ class Nececarritys extends Command
         $editor->givePermissionTo($read);
 
         $reader->givePermissionTo($read);
+        */
+        $user = User::find(1);
+        $user->assignRole(1);
+        $user->save();
     }
 }
