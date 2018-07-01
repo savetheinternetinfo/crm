@@ -54,6 +54,9 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    @can('add notes')
+                                        <a class="dropdown-item" href="{{ route('new') }}">Create new Note</a>
+                                    @endcan
                                     @can('manage roles')
                                         <a class="dropdown-item" href="{{ route('roles') }}">User and Roles</a>
                                     @endcan

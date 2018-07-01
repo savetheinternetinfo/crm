@@ -9,15 +9,24 @@
                     <div class="card-body">
                         @foreach($users as $user)
                             <form class="row" action="{{route('editRole')}}" method="POST">
+                                @csrf
                                 <input type="hidden" value="{{$user->name}}">
-                                <p>{{$user->name}}</p>
-                                <select id="role" name="role" class="form-control col-md-4">
-                                    <option value="none">Remove all roles</option>
-                                    @foreach($roles as $role)
-                                        <option class="form-control" value="{{$role->name}}">{{$role->name}}</option>
-                                    @endforeach
-                                </select>
-                                <button class="btn btn-primary" type="submit">Set Role</button>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon3">
+                                            {{$user->name}}
+                                        </span>
+                                    </div>
+                                    <select id="role" name="role" class="form-control">
+                                        <option value="none">Remove all roles</option>
+                                        @foreach($roles as $role)
+                                            <option class="form-control" {{ !$user->hasRole($role) ? : 'disabled selected'}} value="{{$role->name}}">{{$role->name}}</option>
+                                        @endforeach
+                                    </select>
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary" type="submit">Set Role</button>
+                                    </div>
+                                </div>
                             </form>
                         @endforeach
                     </div>

@@ -6,20 +6,8 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">Create new Note</div>
-
                     <div class="card-body">
-                        <div class="alert alert-info" role="alert">
-                            Search with <b>:tag: name</b> or just <b>name</b> - eg. <b>:text: Youtube</b> or just <b>Youtube</b>
-                        </div>
-                        <div class="form-group row">
-                            <label for="search" class="col-sm-2 col-form-label">Search for:</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="search" name="search" placeholder=":tag: Name">
-                            </div>
-                        </div>
-                        <div class="alert alert-danger" role="alert">
-                            Get Some permissions
-                        </div>
+
                     </div>
                 </div>
             </div>
