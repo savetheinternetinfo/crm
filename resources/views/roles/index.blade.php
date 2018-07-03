@@ -5,12 +5,11 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">Set User Permissions</div>
-
                     <div class="card-body">
                         @foreach($users as $user)
                             <form class="row" action="{{route('editRole')}}" method="POST">
                                 @csrf
-                                <input type="hidden" value="{{$user->name}}">
+                                <input type="hidden" name="username" value="{{$user->name}}">
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon3">

@@ -82,5 +82,30 @@
         </main>
     </div>
 @yield('scripts')
+    <script type="text/javascript" src="{!! asset('/js/snarl.js') !!}"></script>
+    @if(Snarl::getMsg())
+        <script>
+            $(function () {
+                Snarl.addNotification({!! Snarl::getMsg() !!});
+            });
+        </script>
+    @endif
+    @if($errors->has(null))
+        <script>
+            $(function () {
+                @foreach ($errors->all() as $e)
+                    Snarl.addNotification({
+                    title: 'Validation Error',
+                    text: '{{$e}}',
+                    icon: '<i class=\'fa fa-remove\'> </i>',
+                    time: null,
+                    action: null,
+                    dismissable: true,
+                    color: 'danger'
+                });
+                @endforeach
+            });
+        </script>
+    @endif
 </body>
 </html>
