@@ -38,7 +38,7 @@ class NotesController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show(int $id) {
-        return view('notes.show', ['note' => Note::find($id)->first()]);
+        return view('notes.show', ['note' => Note::find($id)]);
     }
 
     /**
@@ -46,7 +46,7 @@ class NotesController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit(int $id) {
-        return view('notes.edit', ['note' => Note::find($id)->first()]);
+        return view('notes.edit', ['note' => Note::find($id)]);
     }
 
     /**
@@ -68,7 +68,7 @@ class NotesController extends Controller
     }
 
     public function delete(int $id) {
-        Note::find($id)->first()->delete();
+        Note::find($id)->delete();
         return redirect()->route('home');
     }
 }
