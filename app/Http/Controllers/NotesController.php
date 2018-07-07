@@ -62,7 +62,7 @@ class NotesController extends Controller
             'updated_at' => Carbon::now()
         ]);
         if($note)
-            Note::find($id)->first()->syncTags(explode(',', $request->input('tags')));
+            Note::find($id)->syncTags(explode(',', $request->input('tags')));
 
         return redirect()->route('show', ['id' => $id]);
     }
