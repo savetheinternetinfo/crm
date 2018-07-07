@@ -45,7 +45,7 @@ class SearchController extends Controller
                 $this->keyword = null;
             }
             else {
-                $this->tag = $src[1];
+                $this->tag = explode(',', $src[1]);
                 $this->keyword = str_replace(' ', '', $src[2]);
             }
         }
