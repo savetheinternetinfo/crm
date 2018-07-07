@@ -30,7 +30,7 @@ class NoteRequest extends FormRequest
         return [
             'title' => 'required|string',
             'content-body' => 'required|string',
-            'tags' => 'required|string'
+            'tags' => 'required|string',
         ];
     }
 }

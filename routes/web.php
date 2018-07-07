@@ -28,5 +28,6 @@ Route::prefix('notes')->group(function () {
     Route::get('show/{id}', 'NotesController@show')->name('show')->middleware('permission:read notes');
     Route::post('create', 'NotesController@create')->name('create')->middleware('permission:add notes');
     Route::get('edit/{id}', 'NotesController@edit')->name('edit')->middleware('permission:add notes');
-    Route::post('delete/{id}', 'NotesController@delete')->name('delete')->middleware('permission:remove notes');
+    Route::post('editited/{id}', 'NotesController@edited')->name('edited')->middleware('permission:add notes');
+    Route::get('delete/{id}', 'NotesController@delete')->name('delete')->middleware('permission:remove notes');
 });

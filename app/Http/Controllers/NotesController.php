@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\NoteRequest;
 use App\Note;
+use Snarl;
 use Auth;
+use Carbon\Carbon;
 
 class NotesController extends Controller
 {
@@ -27,19 +29,46 @@ class NotesController extends Controller
             'createdBy' => Auth::Id(),
             'editedBy' => Auth::Id(),
         ]);
-        $note->attachTag($request->input('tags'));
+        $note->attachTags(explode(',', $request->input('tags')));
         return redirect()->route('show', ['id' => $note->id]);
     }
 
     /**
-     * @param $id
+     * @param int $id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function show($id) {
+    public function show(int $id) {
         return view('notes.show', ['note' => Note::find($id)->first()]);
     }
 
-    public function edit($id) {
+    /**
+     * @param int $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function edit(int $id) {
         return view('notes.edit', ['note' => Note::find($id)->first()]);
+    }
+
+    /**
+     * @param int $id
+     * @param NoteRequest $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function edited(int $id, NoteRequest $request) {
+        $note = Note::find($id)->update([
+            'title' => $request->input('title'),
+            'content' => $request->input('content-body'),
+            'editedBy' => Auth::Id(),
+            'updated_at' => Carbon::now()
+        ]);
+        if($note)
+            Note::find($id)->first()->syncTags(explode(',', $request->input('tags')));
+
+        return redirect()->route('show', ['id' => $id]);
+    }
+
+    public function delete(int $id) {
+        Note::find($id)->first()->delete();
+        return redirect()->route('home');
     }
 }
