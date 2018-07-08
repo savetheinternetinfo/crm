@@ -9,11 +9,7 @@ Save the Internet with us
 
 ## :pushpin: About
 
-On 20 June, the European Parliament will vote on the Copyright Directive. <br>
-Members of the parliament are the only ones that can stand in the way of bad copyright legislation.
-
-**Note:** This is a NodeJS revamp of the [old website](https://github.com/Insax/savetheinternet)
-
+This tool was made to manage contacts and important information for the SaveTheInternetTeam
 <hr>
 
 ## :computer: Website
